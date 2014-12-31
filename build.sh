@@ -1,7 +1,13 @@
 #!/bin/bash
 
-export ANTLR_LIB=../antlrphp-git/lib
-# export ANTLR_LIB=/Users/roll/Documents/projects/antlrphpruntime-read-only-new/lib
-export CLASSPATH=$CLASSPATH:$ANTLR_LIB/antlr-3.1.3-php.jar:$ANTLR_LIB/antlr-2.7.7.jar:$ANTLR_LIB/antlr-runtime-3.1.3.jar:$ANTLR_LIB/gunit.jar:$ANTLR_LIB/stringtemplate-3.2.jar 
+# From antlr4 instructions
+# OS X
+# $ cd /usr/local/lib
+# $ sudo curl -O http://www.antlr.org/download/antlr-4.4-complete.jar
+# $ export CLASSPATH=".:/usr/local/lib/antlr-4.4-complete.jar:$CLASSPATH"
+# $ alias antlr4='java -jar /usr/local/lib/antlr-4.4-complete.jar'
+# $ alias grun='java org.antlr.v4.runtime.misc.TestRig'
+# and then ...
 
-java -Xms32m -Xmx512m org.antlr.Tool MOS.g
+antlr4 -Dlanguage=Python2 MOS.g
+
