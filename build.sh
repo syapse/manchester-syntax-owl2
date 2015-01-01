@@ -9,5 +9,5 @@
 # $ alias grun='java org.antlr.v4.runtime.misc.TestRig'
 # and then ...
 
-antlr4 -Dlanguage=Python2 MOS.g
+antlr4 -Dlanguage=Python2 -visitor MOS.g
 
