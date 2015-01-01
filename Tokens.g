@@ -49,7 +49,12 @@ NOT_LABEL
 	:	'not'
 	;
 WS
-    : (' '| '\t'| EOL)+ -> skip ;
+    : (' '| '\t'| EOL)+ -> skip 
+    ;
+
+COMMENT
+    : '#' ( ~ [\n\r] ) * EOL -> skip
+    ;
 
 LESS_EQUAL
     : '<='
@@ -345,7 +350,7 @@ PN_CHARS_U
     ;
 
 FULL_IRI
-    : LESS [^<>"{}|^\\`\u0000-\u0020]* GREATER
+    : LESS ( ~[<>"{}|^\\`\u0000-\u0020] ) * GREATER
 //(  ~(
                 //LESS | GREATER | '"' | OPEN_CURLY_BRACE | CLOSE_CURLY_BRACE | '|' | '^' | 
                 //'\\' | '`' | ( '\u0000'..'\u0020' ) ) )* GREATER

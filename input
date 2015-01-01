@@ -24,13 +24,13 @@ Annotations:
     rdfs:comment "An example ontology that contains all constructs required for the various versions of the Pizza Tutorial run by Manchester University (see http://www.co-ode.org/resources/tutorials/)"@en,
     owl:versionInfo "v.1.4. Added Food class (used in domain/range of hasIngredient), Added several hasCountryOfOrigin restrictions on pizzas, Made hasTopping invers functional"@en
 
-AnnotationProperty: rdfs:comment
+# AnnotationProperty: rdfs:comment
 
     
-AnnotationProperty: rdfs:label
+# AnnotationProperty: rdfs:label
 
     
-AnnotationProperty: owl:versionInfo
+# AnnotationProperty: owl:versionInfo
 
     
 Datatype: xsd:string
