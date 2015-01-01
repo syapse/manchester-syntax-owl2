@@ -1,8 +1,7 @@
 grammar MOS ;
 	
 options {
-language = Php;
-backtrack=true;
+language = Python2;
 }
 import Tokens;
 

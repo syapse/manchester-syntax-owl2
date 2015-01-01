@@ -49,8 +49,7 @@ NOT_LABEL
 	:	'not'
 	;
 WS
-    : (' '| '\t'| EOL)+ {$channel = HIDDEN;}
-    ;
+    : (' '| '\t'| EOL)+ -> skip ;
 
 LESS_EQUAL
     : '<='
@@ -277,7 +276,6 @@ OBJECT_PROPERTY_CHARACTERISTIC
 	|	TRANSITIVE_LABEL
 	;
 
-fragment
 FUNCTIONAL_LABEL
 	:	'Functional'
 	;
@@ -308,7 +306,6 @@ fragment
 TRANSITIVE_LABEL
     : 'Transitive'
     ;
-fragment
 DOMAIN_LABEL
 	:	'Domain:'
 	;
@@ -348,12 +345,14 @@ PN_CHARS_U
     ;
 
 FULL_IRI
-    : LESS ( options {greedy=false;} : ~(LESS | GREATER | '"' | OPEN_CURLY_BRACE | CLOSE_CURLY_BRACE | '|' | '^' | '\\' | '`' | ('\u0000'..'\u0020')) )* GREATER
-    //{\$this->setText(substr(\$this->getText(), 1, strlen(\$this->getText()) - 2)); }
+    : LESS [^<>"{}|^\\`\u0000-\u0020]* GREATER
+//(  ~(
+                //LESS | GREATER | '"' | OPEN_CURLY_BRACE | CLOSE_CURLY_BRACE | '|' | '^' | 
+                //'\\' | '`' | ( '\u0000'..'\u0020' ) ) )* GREATER
     ;
 
 NODE_ID
-    : '_:' t=SIMPLE_IRI //{\$this->setText($t.text); }
+    : '_:' SIMPLE_IRI 
     ;
 fragment
 PN_CHARS
@@ -374,7 +373,7 @@ CLOSE_SQUARE_BRACE
     ;
 
 QUOTED_STRING
-    : '"'  ( options {greedy=false;} : ~('\u0022' | '\u005C' | '\u000A' | '\u000D') | ECHAR )* '"'
+    : '"'  (  ~('\u0022' | '\u005C' | '\u000A' | '\u000D') | ECHAR )* '"'
     ;
 
 fragment
