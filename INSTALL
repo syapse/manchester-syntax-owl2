@@ -1,0 +1,18 @@
+TARGET=mad2
+   cd /usr/local/lib
+   sudo  curl -O http://www.antlr.org/download/antlr-4.4-complete.jar
+   mkvirtualenv $TARGET
+   workon $TARGET
+   cd $VIRTUAL_ENV
+   git clone https://github.com/syapse/manchester-syntax-owl2.git
+   echo "cd $VIRTUAL_ENV/manchester-syntax-owl2" > $VIRTUAL_ENV/bin/postactivate
+   workon $TARGET
+cat > ../bin/antlr4 <<!
+#!/bin/bash
+export CLASSPATH=".:/usr/local/lib/antlr-4.2-complete.jar:$CLASSPATH"
+java -jar /usr/local/lib/antlr-4.4-complete.jar -Dlanguage=Python2 \$*
+!
+   chmod +x ../bin/antlr4
+   pip install antlr4-python2-runtime
+   ./build.sh 
+   ./parser.py input
