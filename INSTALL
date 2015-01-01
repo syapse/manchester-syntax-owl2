@@ -1,4 +1,4 @@
-TARGET=mad2
+TARGET=manchester
    cd /usr/local/lib
    sudo  curl -O http://www.antlr.org/download/antlr-4.4-complete.jar
    mkvirtualenv $TARGET
