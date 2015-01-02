@@ -11,5 +11,26 @@ Class: UnclosedPizza
         hasTopping some MozzarellaTopping
     
     DisjointWith: 
-        American, AmericanHot, Cajun, Capricciosa, Caprina, Fiorentina, FourSeasons, FruttiDiMare, Giardiniera, LaReine, Margherita, Mushroom, Napoletana, Parmense, PolloAdAstra, PrinceCarlo, QuattroFormaggi, Rosa, Siciliana, SloppyGiuseppe, Soho, Veneziana
+        American, 
+AmericanHot, 
+Cajun, 
+Capricciosa, 
+Caprina, 
+Fiorentina, 
+FourSeasons, 
+FruttiDiMare, 
+Giardiniera, 
+LaReine, 
+Margherita, 
+Mushroom, 
+Napoletana, 
+Parmense, 
+PolloAdAstra, 
+PrinceCarlo, 
+QuattroFormaggi, 
+Rosa, 
+Siciliana, 
+SloppyGiuseppe, 
+Soho, 
+Veneziana
     
