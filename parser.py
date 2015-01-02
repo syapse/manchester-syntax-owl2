@@ -27,7 +27,7 @@ class TreePrinter(object):
             return self._enter
         if name.startswith("exit"):
             return self._exit
-        raise AttributeError()
+        raise AttributeError(name)
 
 
 def main(argv):
