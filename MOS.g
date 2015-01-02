@@ -181,8 +181,13 @@ annotations
 	;
 
 descriptionAnnotatedList
-	:	annotations? description (COMMA descriptionAnnotatedList)*
+	:	annotatedDescription
+        |       descriptionAnnotatedList COMMA descriptionAnnotatedList
 	;
+
+annotatedDescription
+        :     annotations? description 
+        ;
 
 description2List
 	:	description COMMA descriptionList
