@@ -180,9 +180,32 @@ annotations
 	: ANNOTATIONS_LABEL annotationAnnotatedList
 	;
 
+// ORIGINAL: 10.9s
+// descriptionAnnotatedList
+	// :	annotations? description (COMMA descriptionAnnotatedList)*
+	// ;
+
+/* 1.80 seconds
 descriptionAnnotatedList
-	:	annotations? description (COMMA descriptionAnnotatedList)*
+	:	annotatedDescription
+        |       descriptionAnnotatedList COMMA descriptionAnnotatedList
 	;
+
+annotatedDescription
+        :     annotations? description 
+        ;
+*/
+
+// 1.84 seconds
+descriptionAnnotatedList
+	:	annotatedDescription
+        |       annotatedDescription COMMA descriptionAnnotatedList
+	;
+
+annotatedDescription
+        :     annotations? description 
+        ;
+
 
 description2List
 	:	description COMMA descriptionList
