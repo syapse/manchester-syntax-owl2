@@ -167,19 +167,19 @@ ObjectProperty: isIngredientOf
         #hasIngredient
 #    
 #    
-#Class: UnclosedPizza
-#
-#    Annotations: 
-#        rdfs:comment "An unclosed Pizza cannot be inferred to be either a VegetarianPizza or a NonVegetarianPizza, because it might have other toppings.",
-#        rdfs:label "PizzaAberta"@pt
-#    
-#    SubClassOf: 
-#        NamedPizza,
-#        hasTopping some MozzarellaTopping
-#    
-#    DisjointWith: 
-#        American, AmericanHot, Cajun, Capricciosa, Caprina, Fiorentina, FourSeasons, FruttiDiMare, Giardiniera, LaReine, Margherita, Mushroom, Napoletana, Parmense, PolloAdAstra, PrinceCarlo, QuattroFormaggi, Rosa, Siciliana, SloppyGiuseppe, Soho, Veneziana
-#    
+Class: UnclosedPizza
+
+    Annotations: 
+        rdfs:comment "An unclosed Pizza cannot be inferred to be either a VegetarianPizza or a NonVegetarianPizza, because it might have other toppings.",
+        rdfs:label "PizzaAberta"@pt
+    
+    SubClassOf: 
+        NamedPizza,
+        hasTopping some MozzarellaTopping
+    
+    DisjointWith: 
+        American, AmericanHot, Cajun, Capricciosa, Caprina, Fiorentina, FourSeasons, FruttiDiMare, Giardiniera, LaReine, Margherita, Mushroom, Napoletana, Parmense, PolloAdAstra, PrinceCarlo, QuattroFormaggi, Rosa, Siciliana, SloppyGiuseppe, Soho, Veneziana
+    
 #    
 #Class: GarlicTopping
 #
