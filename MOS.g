@@ -1,8 +1,5 @@
 grammar MOS ;
 	
-options {
-language = Python2;
-}
 import Tokens;
 
 description
