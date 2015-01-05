@@ -8,7 +8,12 @@ import time
 from antlr4 import *
 from antlr4.InputStream import InputStream
 from MOSLexer import MOSLexer
+from MOSListener import MOSListener
 from MOSParser import MOSParser
+
+class ErrorReporter(MOSListener):
+    def visitErrorNode(self, node):
+        print node
 
 class TreePrinter(object):
     def __init__(self):
@@ -24,12 +29,15 @@ class TreePrinter(object):
     def visitTerminal(self, t):
         print "%s'%s'" % (" " * self.level , t) 
 
+    def visitErrorNode(self, node):
+        pass
+
     def __getattr__(self, name):
         if name.startswith("enter"):
             return self._enter
         if name.startswith("exit"):
             return self._exit
-        raise AttributeError()
+        raise AttributeError(name)
 
 def parse_stream(stream):
     lexer = MOSLexer(stream)
@@ -40,6 +48,7 @@ def parse_stream(stream):
 
 def main(argv):
     parse_stream(InputStream('Ontology: <http://example.org/>'))
+    error_reporter = ErrorReporter()
     printer = TreePrinter()
     walker = ParseTreeWalker()
     start = time.time()
@@ -47,8 +56,11 @@ def main(argv):
     mid = time.time()
     walker.walk(printer, tree)
     end = time.time()
+    walker.walk(error_reporter, tree)
+    after_error = time.time()
     print "Parse time: %s" % (mid - start)
     print "Walk time: %s" % (end - mid)
+    print "Error walk time: %s" % (after_error - end)
     #print tree.toStringTree()
 
 if __name__ == '__main__':
