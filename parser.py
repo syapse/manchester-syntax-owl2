@@ -3,8 +3,10 @@
 # See LICENSE.txt, MIT License
 
 import sys
+import time
 
 from antlr4 import *
+from antlr4.InputStream import InputStream
 from MOSLexer import MOSLexer
 from MOSParser import MOSParser
 
@@ -29,16 +31,24 @@ class TreePrinter(object):
             return self._exit
         raise AttributeError()
 
-
-def main(argv):
-    input = FileStream(argv[1])
-    lexer = MOSLexer(input)
+def parse_stream(stream):
+    lexer = MOSLexer(stream)
     stream = CommonTokenStream(lexer)
     parser = MOSParser(stream)
-    tree = parser.ontologyDocument()
+    return parser.ontologyDocument()
+    
+
+def main(argv):
+    parse_stream(InputStream('Ontology: <http://example.org/>'))
     printer = TreePrinter()
     walker = ParseTreeWalker()
+    start = time.time()
+    tree = parse_stream(FileStream(argv[1]))
+    mid = time.time()
     walker.walk(printer, tree)
+    end = time.time()
+    print "Parse time: %s" % (mid - start)
+    print "Walk time: %s" % (end - mid)
     #print tree.toStringTree()
 
 if __name__ == '__main__':
