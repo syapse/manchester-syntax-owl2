@@ -164,8 +164,13 @@ dataConjunction
 	;
 
 annotationAnnotatedList
-	:	(annotations)? annotation (COMMA (annotations)? annotation)*
+	:	annotationAnnotated (COMMA annotationAnnotated)*
 	;
+
+annotationAnnotated
+	:	(annotations)? annotation 
+	;
+    
 
 annotation
 	:	annotationPropertyIRI annotationTarget
@@ -211,7 +216,6 @@ annotatedDescription
         :     annotations? description 
         ;
 
-
 description2List
 	:	description COMMA descriptionList
 	;
@@ -248,12 +252,19 @@ objectPropertyFrame
 	;
 
 objectPropertyCharacteristicAnnotatedList
-	:	annotations? OBJECT_PROPERTY_CHARACTERISTIC (COMMA objectPropertyCharacteristicAnnotatedList)*
+	:	objectPropertyCharacteristicAnnotated (COMMA objectPropertyCharacteristicAnnotated)*
 	;
 
+objectPropertyCharacteristicAnnotated
+	:	annotations? OBJECT_PROPERTY_CHARACTERISTIC
+	;
 
 objectPropertyExpressionAnnotatedList
-	:	annotations? objectPropertyExpression (COMMA objectPropertyExpressionAnnotatedList)*
+	:	objectPropertyExpressionAnnotated (COMMA objectPropertyExpressionAnnotated)*
+	;
+
+objectPropertyExpressionAnnotated
+	:	annotations? objectPropertyExpression
 	;
 
 dataPropertyFrame
@@ -269,11 +280,19 @@ dataPropertyFrame
     ;
 
 dataRangeAnnotatedList
-	:	annotations? dataRange (COMMA dataRangeAnnotatedList)*
+	:	dataRangeAnnotated (COMMA dataRangeAnnotated)*
+	;
+
+dataRangeAnnotated
+	:	annotations? dataRange
 	;
 
 dataPropertyExpressionAnnotatedList
-	:	annotations? dataPropertyExpression (COMMA dataPropertyExpressionAnnotatedList)*
+	:	dataPropertyExpressionAnnotated (COMMA dataPropertyExpressionAnnotated)*
+	;
+
+dataPropertyExpressionAnnotated
+	:	annotations? dataPropertyExpression
 	;
 
 annotationPropertyFrame
@@ -285,7 +304,11 @@ annotationPropertyFrame
 	;
 	
 iriAnnotatedList
-	:	annotations? iri (COMMA iriAnnotatedList)*
+	:	iriAnnotated (COMMA iriAnnotated)*
+	;
+	
+iriAnnotated
+	:	annotations? iri
 	;
 
 annotationPropertyIRI
@@ -293,7 +316,11 @@ annotationPropertyIRI
 	;
 
 annotationPropertyIRIAnnotatedList
-	:	annotations? annotationPropertyIRI (COMMA annotationPropertyIRIAnnotatedList)*
+	:	annotationPropertyIRIAnnotated (COMMA annotationPropertyIRIAnnotated)*
+	;
+
+annotationPropertyIRIAnnotated
+	:	annotations? annotationPropertyIRI
 	;
 
 individualFrame
@@ -306,16 +333,24 @@ individualFrame
 	)*
 	;
 
-
 factAnnotatedList
-	:	annotations? fact (COMMA factAnnotatedList)*
+	:	factAnnotated (COMMA factAnnotated)*
 	;
 
+factAnnotated
+	:	annotations? fact
+	;
 
 individualAnnotatedList
-	:	annotations? individual (COMMA individualAnnotatedList)*
+	:	individualAnnotated (COMMA individualAnnotated)*
 	;
-fact	:	NOT_LABEL? (objectPropertyFact | dataPropertyFact);
+
+individualAnnotated
+	:	annotations? individual
+	;
+
+fact	:	NOT_LABEL? (objectPropertyFact | dataPropertyFact)
+        ;
 
 objectPropertyFact
 	:	objectPropertyIRI individual
