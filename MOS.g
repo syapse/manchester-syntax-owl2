@@ -196,10 +196,15 @@ annotatedDescription
         ;
 */
 
-// 1.84 seconds
+/* 1.84 seconds
 descriptionAnnotatedList
 	:	annotatedDescription
         |       annotatedDescription COMMA descriptionAnnotatedList
+	;
+*/
+// 1.74 seconds
+descriptionAnnotatedList
+	:	annotatedDescription (COMMA annotatedDescription)*
 	;
 
 annotatedDescription
