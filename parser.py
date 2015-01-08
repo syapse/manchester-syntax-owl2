@@ -58,9 +58,9 @@ def main(argv):
     end = time.time()
     walker.walk(error_reporter, tree)
     after_error = time.time()
-    print "Parse time: %s" % (mid - start)
-    print "Walk time: %s" % (end - mid)
-    print "Error walk time: %s" % (after_error - end)
+    sys.stderr.write("Parse time: %s\n" % (mid - start))
+    sys.stderr.write("Walk time: %s\n" % (end - mid))
+    sys.stderr.write("Error walk time: %s\n" % (after_error - end))
     #print tree.toStringTree()
 
 if __name__ == '__main__':
